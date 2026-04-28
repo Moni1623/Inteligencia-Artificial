@@ -1,0 +1,101 @@
+CUESTIONARIO DE INTELIGENCIA ARTIFICIAL - TEMA 4
+
+1. ¿Cómo define el Aprendizaje Automático vs programación tradicional?
+Respuesta:
+En la programación tradicional se programan reglas explícitas; en el Aprendizaje Automático se usa un algoritmo que aprende esas reglas a partir de los datos.
+
+------------------------------------------------------------
+
+2. Diferencia entre paradigma conexionista y simbólico:
+Respuesta:
+El simbólico es transparente y basado en reglas lógicas; el conexionista es una "caja negra" difícil de interpretar.
+
+------------------------------------------------------------
+
+3. ¿Por qué el aprendizaje automático es mejor para percepción sensorial?
+Respuesta:
+Porque tareas como ver u oír son difíciles de programar con reglas, pero fáciles de aprender con ejemplos.
+
+------------------------------------------------------------
+
+4. Generalización en IA (analogía del examen):
+Respuesta:
+Generalizar es responder preguntas nuevas. Memorizar no es aprender; aprender implica adaptarse a situaciones nuevas.
+
+------------------------------------------------------------
+
+5. Diferencia entre aprendizaje supervisado y no supervisado:
+Respuesta:
+El supervisado usa datos con etiquetas; el no supervisado encuentra patrones sin etiquetas.
+
+------------------------------------------------------------
+
+6. Ciclo del aprendizaje por refuerzo:
+Respuesta:
+El agente observa un estado, actúa, recibe una recompensa y cambia de estado, buscando maximizar recompensas futuras.
+
+------------------------------------------------------------
+
+7. Importancia de aleatoriedad en conjunto de test:
+Respuesta:
+Evita sesgos entre entrenamiento y prueba, asegurando evaluación justa.
+
+------------------------------------------------------------
+
+8. ¿Qué es un fold en validación cruzada?
+Respuesta:
+Es una partición de los datos usada para entrenar o evaluar el modelo (ej. en k=10, cada fold es ~10%).
+
+------------------------------------------------------------
+
+9. Métricas de evaluación:
+
+Clasificación:
+- Accuracy: porcentaje de aciertos totales.
+- Precision: aciertos positivos sobre predicciones positivas.
+- Recall: aciertos positivos sobre reales positivos.
+- F1-Score: balance entre precision y recall.
+
+Regresión:
+- MSE: promedio de errores al cuadrado.
+- RMSE: raíz del MSE.
+- MAE: promedio de errores absolutos.
+- R^2: porcentaje de variabilidad explicada.
+
+------------------------------------------------------------
+
+10. ¿Cómo funciona k-NN?
+Respuesta:
+Calcula distancias, selecciona los k vecinos más cercanos y asigna la etiqueta más frecuente.
+
+------------------------------------------------------------
+
+11. Kernel lineal vs polinomial:
+Respuesta:
+El lineal separa con una línea recta; el polinomial permite curvas más complejas.
+
+------------------------------------------------------------
+
+12. Desventaja de SVM en datasets grandes:
+Respuesta:
+Alto costo computacional y de memoria (complejidad cuadrática).
+
+------------------------------------------------------------
+
+13. Partes de un árbol de decisión:
+Respuesta:
+Raíz: inicio; nodos internos: decisiones; hojas: resultado final.
+
+------------------------------------------------------------
+
+14. Aprendizaje en redes neuronales:
+Respuesta:
+Ajustan pesos comparando predicción vs valor real para reducir el error.
+
+------------------------------------------------------------
+
+15. Ventaja de Transformers sobre RNN:
+Respuesta:
+Permiten procesar todo en paralelo y capturar relaciones lejanas en el texto.
+
+------------------------------------------------------------
