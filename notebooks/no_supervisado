@@ -1,0 +1,191 @@
+EJERCICIOS RESUELTOS - ÁRBOLES Y MODELOS (IA)
+
+------------------------------------------------------------
+1. ÁRBOLES DE DECISIÓN
+
+Ejercicio 1: Entropía
+
+Datos:
+Sí = 6
+No = 4
+Total = 10
+
+p(Sí) = 6/10 = 0.6
+p(No) = 4/10 = 0.4
+
+Entropía:
+H = - (0.6 log2 0.6 + 0.4 log2 0.4)
+
+H ≈ - (0.6 * -0.737 + 0.4 * -1.321)
+H ≈ 0.971
+
+------------------------------------------------------------
+Ejercicio 2: Ganancia de Información
+
+1. Entropía inicial ≈ 0.971
+
+2. Ganancia de información (resumen):
+
+Clima:
+- Separa bastante bien los datos
+- IG ≈ 0.246
+
+Humedad:
+- IG ≈ 0.151
+
+Viento:
+- IG ≈ 0.048
+
+3. Raíz del árbol:
+Clima (mayor ganancia)
+
+4. División:
+Clima:
+- Soleado → mayormente No
+- Nublado → todos Sí (hoja pura)
+- Lluvioso → mezcla
+
+5. Repetición:
+Se sigue dividiendo (ej: con Viento o Humedad) hasta obtener hojas puras.
+
+------------------------------------------------------------
+2. RANDOM FOREST
+
+Ejercicio 3: Bagging
+
+Predicciones:
+[1, 0, 1, 1, 0]
+
+1. Predicción final:
+Mayoría → 1
+
+2. ¿Por qué reduce varianza?
+Porque promedia múltiples modelos, reduciendo errores individuales.
+
+------------------------------------------------------------
+Ejercicio 4: Overfitting
+
+1. Problema:
+Sobreajuste (overfitting)
+
+2. Solución con Random Forest:
+- Usa múltiples árboles
+- Reduce varianza
+- Usa subconjuntos de datos y variables
+
+3. Si todos los árboles son iguales:
+No hay mejora → no hay diversidad → mismo error
+
+------------------------------------------------------------
+3. GRADIENT BOOSTING / XGBOOST
+
+Ejercicio 5:
+
+y_pred = [10, 10, 10]
+y_real = [12, 8, 15]
+
+1. Residuos:
+[2, -2, 5]
+
+2. Nuevo modelo:
+Aprende a predecir errores
+
+3. Nueva predicción:
+y_pred_nuevo = predicción anterior + corrección
+Ej: [10+2, 10-2, 10+5] = [12, 8, 15]
+
+------------------------------------------------------------
+Ejercicio 6:
+
+1. Diferencias:
+
+Random Forest:
+- Paralelo
+- Árboles independientes
+- Reduce varianza
+
+Gradient Boosting:
+- Secuencial
+- Aprende de errores previos
+- Reduce sesgo
+
+2. ¿Cuál sobreajusta más?
+Gradient Boosting
+
+3. ¿Más interpretable?
+Random Forest
+
+------------------------------------------------------------
+4. K-MEANS
+
+Ejercicio 7:
+
+Puntos:
+(1,1), (2,2), (8,8), (9,9)
+
+Centroides:
+C1 = (1,1)
+C2 = (9,9)
+
+1. Asignación:
+Cluster 1: (1,1), (2,2)
+Cluster 2: (8,8), (9,9)
+
+2. Nuevos centroides:
+C1 = (1.5, 1.5)
+C2 = (8.5, 8.5)
+
+3. Nueva iteración:
+Asignación no cambia → convergencia
+
+------------------------------------------------------------
+Ejercicio 8:
+
+1. K pequeño:
+Clusters muy generales
+
+2. K grande:
+Sobreajuste (muchos clusters)
+
+3. Método del codo:
+Se grafica error vs K
+Se elige donde el cambio deja de ser significativo
+
+------------------------------------------------------------
+5. DBSCAN
+
+Ejercicio 9:
+
+eps = 2
+minPts = 3
+
+Puntos:
+(1,1), (2,1), (2,2), (8,8)
+
+1. Núcleo:
+(2,1), (2,2), (1,1) → suficientes vecinos
+
+2. Borde:
+Ninguno claro
+
+3. Ruido:
+(8,8) → aislado
+
+------------------------------------------------------------
+6. ANOMALÍAS (ISOLATION FOREST)
+
+Ejercicio 10:
+
+Datos:
+[10, 12, 11, 13, 100]
+
+1. Anomalía:
+100
+
+2. ¿Por qué se detecta rápido?
+Porque está muy alejado del resto
+
+3. “Profundidad corta”:
+Significa que se puede aislar con pocas divisiones → indica anomalía
+
+------------------------------------------------------------
