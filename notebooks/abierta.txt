@@ -1,5 +1,3 @@
-CUESTIONARIO DE INTELIGENCIA ARTIFICIAL - TEMA 4
-
 1. ¿Cómo define el Aprendizaje Automático vs programación tradicional?
 Respuesta:
 En la programación tradicional se programan reglas explícitas; en el Aprendizaje Automático se usa un algoritmo que aprende esas reglas a partir de los datos.
