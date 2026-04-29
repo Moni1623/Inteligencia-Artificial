@@ -1,0 +1,430 @@
+Actividad 4.5 - Arboles de Decision, Ensambles y Clustering
+Elizalde Maza Jesus Eduardo | 21-23 Abril 2026
+
+================================================================================
+Problema 1
+================================================================================
+
+Enunciado: Dado un nodo raiz con 6 instancias de clase "Si" y 4 instancias de clase "No" (N =
+10), calcula la entropia de Shannon H(S) del nodo y explica su interpretacion.
+
+Solucion
+
+(1) Sumamos el total de instancias (S) para obtener el denominador de nuestras probabilidades:
+    Clase Si: 6    Clase No: 4    Total(N) = 6 + 4 = 10
+
+    Las probabilidades Cpi:
+    P(Si) = 6/10 = 0.6    P(No) = 4/10 = 0.4
+
+(2) La entropia de Shannon para un conjunto de datos se define como:
+    H(S) = - Sum[ Pi * log2(Cpi) ]
+
+    Para el caso binario (2 clases) la formula extendida es:
+    H(S) = -[ P(Si)*log2(P(Si)) + P(No)*log2(P(No)) ]
+
+(3) Sustituimos los valores:
+    - Termino para "Si":  0.6 x log2(0.6) = (0.6)(-0.737) ≈ -0.4422
+    - Termino para "No":  0.4 x log2(0.4) = (0.4)(-1.3219) ≈ -0.5287
+
+    H(S) = -(-0.4422 - 0.5287) = -(-0.9709)
+    H(S) = 0.9709 bits
+
+    Nota: log10(x) / log10(2) = log2(x)
+
+Interpretacion: Como el valor esta muy cerca de 1 (0.9709), el nodo tiene una impureza alta.
+Si tuvieramos 5 "Si" y 5 "No", la entropia seria exactamente 1 (maxima incertidumbre).
+
+================================================================================
+Problema 2
+================================================================================
+
+Enunciado: Usando el dataset clasico del tiempo (Play Tennis) con 8 casos totales (4 Si / 4 No)
+y atributos Clima (Soleado, Nublado, Lluvioso), Humedad (Alta, Media, Baja) y Viento (No, Si),
+construye el arbol de decision ID3 calculando la Ganancia de Informacion de cada atributo y
+seleccionando el nodo raiz. Continua el arbol hasta obtener hojas puras.
+
+Solucion
+
+(1) Analizamos la columna objetivo "Jugar". Total de casos: 8 (Si: 4, No: 4).
+    Como la distribucion es perfecta (50/50), la incertidumbre es maxima:
+    H(S) = -[0.5*log2(0.5) + 0.5*log2(0.5)] = 1.0
+
+(2) Ganancia de Informacion (formula general):
+    IG(S, A) = H(S) - Sum[ (|Sv| / |S|) * H(Sv) ]
+
+(3) Calculamos IG para cada atributo:
+
+    a) Clima:
+       - Soleado (3 casos): 0 Si, 3 No  -> H(Soleado) = 0
+       - Nublado (2 casos): 2 Si, 0 No  -> H(Nublado) = 0
+       - Lluvioso (3 casos): 2 Si, 1 No -> H(Lluvioso) = -[2/3*log2(2/3) + 1/3*log2(1/3)] ≈ 0.918
+       Entropia Residual(Clima): 3/8*(0) + 2/8*(0) + 3/8*(0.918) ≈ 0.344
+       IG(Clima) = 1 - 0.344 = 0.656
+
+    b) Humedad:
+       - Alta (3 casos): 1 Si, 2 No  -> H ≈ 0.918
+       - Media (2 casos): 1 Si, 1 No -> H = 1
+       - Baja (3 casos): 2 Si, 1 No  -> H ≈ 0.918
+       Entropia Residual(Humedad): 3/8*(0.918) + 2/8*(1) + 3/8*(0.918) ≈ 0.938
+       IG(Humedad) = 1 - 0.938 = 0.062
+
+    c) Viento:
+       - No (5 casos): 3 Si, 2 No -> H ≈ 0.971
+       - Si (3 casos): 1 Si, 2 No -> H ≈ 0.918
+       Entropia Residual(Viento): 5/8*(0.971) + 3/8*(0.918) ≈ 0.951
+       IG(Viento) = 1 - 0.951 = 0.049
+
+(4) Comparamos las ganancias:
+    IG(Clima) = 0.656  -> Ganador
+    IG(Humedad) = 0.062
+    IG(Viento) = 0.049
+    El nodo raiz del arbol es Clima.
+
+(5) Al dividir por Clima observamos los subconjuntos:
+    - Si Clima = Soleado: todos los nodos son "No" -> Hoja pura.
+    - Si Clima = Nublado: todos los casos son "Si" -> Hoja pura.
+    - Si Clima = Lluvioso: subconjunto {Si, Si, No} -> hay que calcular ganancia para Humedad y Viento.
+
+(6) Repeticion para el nodo Lluvioso:
+    Observando los datos cuando Clima = Lluvioso:
+    - Lluvioso + Humedad Media + Viento No -> Si
+    - Lluvioso + Humedad Baja  + Viento No -> Si
+    - Lluvioso + Humedad Baja  + Viento Si -> No
+    El Viento separa perfectamente: sin viento -> se juega; con viento -> no se juega.
+
+Arbol final:
+    Clima
+    |-- Soleado: NO
+    |-- Nublado: SI
+    |-- Lluvioso -> Viento
+                    |-- No: SI
+                    |-- Si: NO
+
+================================================================================
+Problema 3
+================================================================================
+
+Enunciado: En un problema de clasificacion binaria (clases 0 y 1), un Random Forest produce las
+siguientes predicciones individuales de 5 arboles: [1, 0, 1, 1, 0]. ¿Cual es la prediccion final del
+ensamble? Explica el mecanismo de votacion y justifica con la Ley de los Grandes Numeros por
+que Random Forest es robusto.
+
+Solucion
+
+(1) Mecanismo de Votacion Mayoritaria (Majority Voting):
+    Predicciones individuales: [1, 0, 1, 1, 0]
+    Conteo de votos: Clase 1 -> 3 votos    Clase 0 -> 2 votos
+    Resultado: Como 3 > 2, la prediccion final del ensamble es Clase 1.
+
+(2) Ley de los Grandes Numeros:
+    Al promediar o votar los resultados de multiples modelos independientes, el error aleatorio
+    de cada uno tiende a cancelarse. Un solo arbol puede ser muy sensible al ruido de los datos
+    de alta varianza, pero el promedio es mucho mas estable.
+
+================================================================================
+Problema 4
+================================================================================
+
+Enunciado: (a) Explica por que un arbol de decision individual con profundidad 20 tiene un
+problema de overfitting. (b) ¿Como Random Forest resuelve ese problema mediante Bagging y
+Feature Randomness? (c) ¿Que ocurriria si eliminamos la aleatoriedad en Random Forest
+(todos los arboles identicos)?
+
+Solucion
+
+(1) Un arbol con profundidad 20 es extremadamente complejo. El problema principal es el
+    Overfitting (sobre-ajuste):
+    - Al ser tan profundo, el arbol deja de aprender patrones generales y comienza a "memorizar"
+      el ruido y los casos particulares del dataset de entrenamiento.
+    - Consecuencia: Tendra un error casi nulo en el entrenamiento, pero fallara drasticamente
+      con datos nuevos -> poca capacidad de generalizacion.
+
+(2) Random Forest no solo combina arboles, sino que introduce aleatoriedad para forzar la
+    generalizacion mediante 2 mecanismos:
+    - Bagging (Bootstrap Aggregating): Cada arbol se entrena con una muestra distinta de datos
+      (muestreo con reemplazo). Esto hace que cada arbol vea una version ligeramente distinta
+      del problema; si los arboles fueran identicos, la varianza seria la misma.
+    - Feature Randomness: En cada division (split), el arbol solo puede elegir entre un subconjunto
+      aleatorio de caracteristicas. Esto evita que un solo atributo dominante dicte la estructura de
+      todos los arboles, permitiendo que el bosque capture diferentes perspectivas de los datos.
+
+(3) Si eliminamos la aleatoriedad y todos los arboles son identicos:
+    (i)  La varianza no se reduce: El error que comete un arbol lo cometeran todos. Votar entre
+         100 personas que piensan igual no aporta mucha informacion.
+    (ii) Se pierde la "Sabiduria de las Masas": el ensamble heredaria el overfitting del arbol
+         individual de profundidad 20.
+    (iii) Resultado: El modelo deja de ser "Random" Forest y se convierte simplemente en un
+         arbol individual repetido, perdiendo toda la ventaja del aprendizaje por conjunto.
+
+    La diversidad del Bosque es lo que permite que el error de un arbol sea compensado por el
+    acierto de otros; si no hay diversidad, no hay robustez.
+
+================================================================================
+Problema 5
+================================================================================
+
+Enunciado: En Gradient Boosting, dado un conjunto de datos con valores reales y = [10, 12, 11,
+13, 15] y prediccion inicial y_pred = 10: (a) Calcula el vector de residuos. (b) Explica como el
+Arbol 2 usa esos residuos. (c) Muestra como se actualiza la prediccion con eta = 0.1.
+(d) Contrasta Bagging (Random Forest) vs. Boosting (XGBoost).
+
+Solucion
+
+(1) Calcular Residuos:
+    En Boosting, los residuos son la diferencia entre el valor real y la prediccion actual.
+    Representan lo que el modelo aun no explica.
+    Formula: Residuo = y - y_pred
+
+    - Para y1: 10 - 10 = 0
+    - Para y2: 12 - 10 = 2
+    - Para y3: 11 - 10 = 1   (nota: el PDF muestra "8-10=-2", se transcribe tal cual)
+    - Para y4: 13 - 10 = 3
+    - Para y5: 15 - 10 = 5
+
+    Vector de residuos: [2, -2, 5]  (valores mostrados en el documento original)
+
+(2) Entrenar el Arbol 2 (sobre los residuos):
+    A diferencia de Random Forest, donde cada arbol intenta predecir y, en Gradient Boosting
+    el siguiente modelo (arbol) se entrena para aprender los residuos generados por el modelo
+    anterior.
+    - Objetivo del Arbol 2: Aprender el patron del vector [2, -2, 5]
+    - Intuicion: El nuevo modelo intentara atender por que nos faltaron 2 unidades en el primer
+      caso, por que nos pasamos en el segundo, y por que nos faltaron 5 en el tercero.
+
+(3) Actualizacion de la prediccion:
+    La nueva prediccion NO reemplaza a la anterior, sino que le suma (generalmente multiplicada
+    por una tasa de aprendizaje o learning rate eta):
+
+    y_nueva = y_inicial + (eta x prediccion_del_residuo)
+
+    - Si eta = 0.1 y el nuevo modelo predice perfectamente los residuos:
+      Para el primer dato: 10 + (0.1 x 2) = 10.2
+    - Resultado: La prediccion se mueve lentamente hacia el valor real. En cada paso (iteracion)
+      el error global disminuye.
+
+(4) Contraste Bagging vs. Boosting:
+    - Bagging (Random Forest): Arboles independientes en paralelo. El error se reduce promediando.
+    - Boosting (XGBoost): Arboles secuenciales. Cada arbol intenta corregir los errores del
+      anterior del sesgo.
+
+================================================================================
+Problema 6
+================================================================================
+
+Enunciado: Compara Random Forest (Bagging) con Gradient Boosting en cuanto a: (1)
+construccion, objetivo, mecanismo y sensibilidad; (2) ¿cual sobreajusta mas facilmente y por
+que?; (3) interpretabilidad de ambos modelos vs. un arbol individual.
+
+Solucion
+
+(1) Diferencias principales:
+
+    Caracteristica       | RF (Random Forest / Bagging)          | GB (Gradient Boosting)
+    ---------------------|---------------------------------------|-------------------------------
+    Construccion         | En paralelo (arboles independientes)  | Secuencial (uno tras otro)
+    Objetivo             | Reducir la varianza (evitar overfitting)| Reducir el sesgo (mejorar precision)
+    Mecanismo            | Cada arbol vota, se promedian         | Cada arbol corrige el error anterior
+    Sensibilidad         | Robusto frente a datos ruidosos       | Sensible a valores atipicos
+
+(2) Gradient Boosting sobreajusta mas facilmente porque su objetivo es reducir el error a toda
+    costa. Si le damos demasiadas iteraciones (arboles) o una tasa de aprendizaje muy alta, el
+    modelo terminara aprendiendo perfectamente el ruido de los datos de entrenamiento.
+    En Random Forest, agregar mas arboles no suele causar overfitting. En Boosting si, por eso
+    en XGBoost es vital usar Early Stopping.
+
+(3) Interpretabilidad:
+    - Ambos son modelos de "caja negra" comparados con un solo arbol de decision.
+    - Random Forest suele considerarse ligeramente mas interpretable de manera empirica: es
+      mas facil entender el impacto promedio de las variables a traves del "Feature Importance" global.
+    - Gradient Boosting es mas complejo de interpretar porque el efecto de una variable en el
+      arbol 100 depende de lo que hicieron los arboles anteriores.
+    - Herramienta de apoyo: Para ambos casos en la industria se usan valores SHAP o LIME para
+      poder explicarle las predicciones a un usuario final.
+
+    -- Si quieres un modelo rapido de entrenar y dificil de romper: Random Forest.
+    -- Si buscas la maxima precision y tienes tiempo para tunear hiperparametros: Gradient Boosting.
+
+================================================================================
+Problema 7
+================================================================================
+
+Enunciado: Ejecuta manualmente una iteracion del algoritmo K-Means (K = 2) con los puntos
+A(1,1), B(2,2), C(8,8), D(9,9) y centroides iniciales C1(1,1) y C2(9,9). Calcula las distancias
+euclidianas, asigna los puntos a clusteres y recalcula los centroides. ¿El algoritmo convergio?
+
+Solucion
+
+(1) Distancia Euclidiana (Asignacion de clusteres):
+    Calculamos la distancia de cada punto a los centroides iniciales C1(1,1) y C2(9,9):
+    d = sqrt[ (x2 - x1)^2 + (y2 - y1)^2 ]
+
+    - A(1,1): Distancia a C1 = 0      -> Se queda en Cluster 1.
+    - B(2,2): Mas cerca de C1(1,1)    -> Se queda en Cluster 1.
+    - C(8,8): Mas cerca de C2(9,9)    -> Se queda en Cluster 2.
+    - D(9,9): Distancia a C2(9,9) = 0 -> Se queda en Cluster 2.
+
+    Grupos resultantes:
+    G1 = {(1,1), (2,2)}
+    G2 = {(8,8), (9,9)}
+
+(2) Recalcular centroides:
+    El nuevo centroide es el promedio (la media) de los puntos asignados a cada grupo:
+    - Nuevo C1: ((1+2)/2, (1+2)/2) = (1.5, 1.5)
+    - Nuevo C2: ((8+9)/2, (8+9)/2) = (8.5, 8.5)
+
+(3) ¿Mas iteraciones?
+    Volvemos a evaluar la cercania con los nuevos centroides (1.5, 1.5) y (8.5, 8.5):
+    - (1,1) y (2,2) siguen estando mucho mas cerca de 1.5 -> se mantienen en Cluster 1.
+    - (8,8) y (9,9) siguen estando mucho mas cerca de 8.5 -> se mantienen en Cluster 2.
+
+    Conclusion: Como la asignacion de los puntos no cambio, los centroides tampoco cambiaran
+    en la siguiente iteracion. El algoritmo ha convergido.
+
+================================================================================
+Problema 8
+================================================================================
+
+Enunciado: (a) ¿Que ocurre si elegimos un valor de K menor al numero real de grupos (e.g.
+K=1)? ¿Y si K es excesivo (e.g. K = N puntos)? (b) Explica el Metodo del Codo (Elbow Method)
+y usalo con la siguiente tabla de inercia para elegir K optimo: K=1->500, K=2->250, K=3->100,
+K=4->85, K=5->75. (c) ¿Como DBSCAN difiere de K-Means en el manejo del punto D(8,8) del
+problema anterior?
+
+Solucion
+
+(1) Si elegimos K menor al numero real de grupos (e.g. K = 1):
+    - Subajuste (Underfitting): El modelo agrupa datos que son muy diferentes entre si en un
+      mismo cluster.
+    - Inercia total alta: La suma de las distancias al cuadrado dentro de los clusteres sera muy
+      grande porque los puntos estan lejos de su centroide.
+
+    Si elegimos K excesivo (e.g. K = N, donde N es el nro. de puntos):
+    - Sobreajuste: Cada dato podria terminar siendo su propio cluster.
+    - Fragmentacion: Se pierde el proposito del clustering, que es encontrar estructuras generales.
+      La inercia sera 0 pero el modelo no tendra utilidad practica.
+
+(2) Metodo del Codo (Elbow Method):
+    Este metodo busca "el punto de equilibrio" donde anadir un cluster mas ya no reduce
+    significativamente la inercia (WCSS - Within-cluster sum of squares).
+
+    Tabla de inercia dada:
+    K=1 -> 500
+    K=2 -> 250
+    K=3 -> 100
+    K=4 ->  85
+    K=5 ->  75
+
+    Reduccion de inercia:
+    K=1->2: -250
+    K=2->3: -150  (codo)
+    K=3->4:  -15
+    K=4->5:  -10
+
+    Analisis:
+    - Al pasar de K=1 a K=2 la inercia baja drasticamente 250 unidades.
+    - De K=2 a K=3 baja 150 unidades.
+    - De K=3 a K=4 la mejora es minima: 15 unidades.
+
+    Resultado: El codo esta en K=3 y a partir de ahi el esfuerzo comparado de anadir mas
+    clusteres no vale la pena por la ganancia de precision.
+
+(3) DBSCAN vs. K-Means con el punto D(8,8):
+    Parametros de control DBSCAN: eps (epsilon) = 2 (radio maximo para buscar vecinos),
+    minPts = 3 (numero minimo de puntos incluyendose para ser nodo).
+
+    Analisis de Vecindades:
+    - A(1,1): Vecinos (2,1) dist=1; (2,2) dist=sqrt(2)=1.41 -> Total 3 puntos en su vecindad.
+    - B(2,1): Vecinos (1,1) dist=1; (2,2) dist=1           -> Total 3 puntos en su vecindad.
+    - C(2,2): Vecinos (1,1) dist=1.41; (2,1) dist=1        -> Total 3 puntos en su vecindad.
+    - D(8,8): Vecinos: Ninguno                              -> Total 1 punto (el mismo).
+
+    Clasificacion Final:
+    - Puntos nucleo (core):  Aquellos con >= 3 en su radio -> (1,1), (2,1) y (2,2).
+    - Puntos borde (border): Aquellos con menos de 3 puntos pero alcanzables desde el nucleo
+                             -> Ninguno en este caso.
+    - Puntos ruido (noise):  Aquellos que no son nucleo ni son alcanzables por uno -> D(8,8).
+
+    En DBSCAN el modelo tiene la honestidad de decir "este punto es rudo y no pertenece a
+    ningun patron". En K-means el punto (8,8) habria sido forzado a pertenecer a un grupo. En
+    DBSCAN estan diferenciados de K-Means: aqui no hay centroides, hay vecindades; un punto
+    se incluye a si mismo en el conteo de su vecindad.
+
+================================================================================
+Problema 9
+================================================================================
+
+Enunciado: Con eps = 2 y minPts = 3, aplica DBSCAN a los puntos A(1,1), B(2,1), C(2,2), D(8,8).
+Clasifica cada punto como nucleo, borde o ruido.
+
+Solucion
+
+(Ver desarrollo en Problema 8, seccion (3) - la clasificacion DBSCAN ya se realizo ahi con
+estos mismos parametros y puntos)
+
+Resumen del resultado:
+- Nucleos: A(1,1), B(2,1), C(2,2) - cada uno tiene >= 3 puntos en radio eps=2.
+- Borde:   Ninguno.
+- Ruido:   D(8,8) - no tiene vecinos suficientes ni es alcanzable desde un nucleo.
+
+================================================================================
+Problema 10
+================================================================================
+
+Enunciado: Dado el conjunto de datos {10, 12, 11, 13, 100}, detecta el outlier usando:
+(a) Z-Score (2-Core): calcula la media, varianza y z-score del punto sospechoso 100.
+(b) Isolation Forest: explica bajo que premisa funciona y como la profundidad del arbol indica
+anomalia. (c) En Isolation Forest, ¿que indica una profundidad corta vs. una profundidad larga
+para un punto?
+
+Solucion
+
+(1) Metodo Z-Score (2-Core):
+    Para saber que tan extrano es un punto calculamos cuantas desviaciones estandar esta lejos
+    de la media del grupo.
+
+    Calcular la media (x_bar):
+    x_bar = (10+12+11+13+100) / 5 = 146/5 = 29.2
+
+    Calcular la varianza (sigma^2):
+    Calculamos la diferencia de cada punto respecto a la media, la elevamos al cuadrado y
+    promediamos:
+    1 - (10 - 29.2)^2 = 368.64
+    2 - (12 - 29.2)^2 = 295.84
+    3 - (11 - 29.2)^2 = 331.24
+    4 - (13 - 29.2)^2 = 262.44
+    5 - (100- 29.2)^2 = 5012.64
+
+    sigma^2 = (368.64 + 295.84 + 331.24 + 262.44 + 5012.64) / 5
+            = 6271.3 / 5
+            = 1254.16
+
+    Desviacion estandar: sigma = sqrt(1254.16) ≈ 35.41
+
+    Z-Score del punto sospechoso (100):
+    z = (x - x_bar) / sigma = (100 - 29.2) / 35.41 ≈ 1.99
+
+    Regla de Oro: Normalmente en una distribucion normal, cualquier punto con |z| >= 3 se
+    considera una anomalia extrema. Aunque 1.99 no llega a 3, el dataset es muy pequeno y 100
+    jala la media hacia arriba; los otros z-scores negativos o muy cercanos a 0 confirman que
+    100 es atipico.
+
+    Para el 12: z = (12 - 29.2) / 35.41 = -0.48
+    z_100 ≈ 2 frente a z_12 = -0.48 -> la diferencia de magnitud es evidente: el punto 100
+    esta a casi 2 desviaciones estandar de la media, confirmando que es outlier.
+
+(2) Isolation Forest:
+    El algoritmo opera bajo una premisa simple: las anomalias son faciles de aislar. Para aislar
+    un punto, el algoritmo realiza particiones aleatorias.
+    Debido a que el punto 100 esta muy alejado del resto, es mucho mas probable que una linea
+    de corte aleatoria lo separe en los primeros intentos.
+    Intuicion: Es mucho mas facil separar a una persona que esta sola en un campo que a alguien
+    que esta en una multitud.
+
+(3) Profundidad en Isolation Forest:
+    En este contexto, la profundidad se refiere a cuantas particiones (niveles del arbol) se
+    necesitaron para aislar un punto:
+    - Profundidad Corta: Significa que el punto se aislo en muy pocos pasos. Esto es un indicador
+      directo de que el punto es una anomalia.
+    - Profundidad Larga: Los puntos que estan muy agrupados (como el 10, 11 y 12) requieren
+      muchas mas particiones aleatorias para ser separados individualmente. Por lo tanto, una
+      profundidad mayor indica que el punto es normal.
