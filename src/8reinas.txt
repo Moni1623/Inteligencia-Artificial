@@ -1,0 +1,145 @@
+# 1. ¿Cuál es el cambio de paradigma fundamental que representa el Aprendizaje Automático?
+# b) Programar un algoritmo para que aprenda reglas a partir de los datos.
+# 2. ¿Qué otro nombre recibe comúnmente el enfoque de Machine Learning?
+# c) Conexionista.
+# 3. ¿A qué se refiere Taulli (2019) como el "combustible" del aprendizaje automático?
+# b) A la gran cantidad de datos de fácil acceso.
+# 4. ¿Qué tipo de razonamiento es típico del paradigma Conexionista?
+# d) Inductivo y probabilístico.
+# 5. ¿Qué problema de representación presenta el aprendizaje automático según Castelvecchi?
+# b) Caja negra (opacidad).
+# 6. ¿Por qué se considera al aprendizaje automático como una "autoprogramación"?
+# c) Porque los datos determinan la estructura detallada del modelo aprendido.
+# 7. ¿Cuál es el objetivo principal de un algoritmo de aprendizaje?
+# b) Identificar características en los datos para mejorar la ejecución automáticamente.
+# 8. ¿Qué es un "Modelo" en Machine Learning?
+# b) El programa aprendido que mapea entradas a predicciones.
+# 9. ¿Cuál es la verdadera medida del éxito de un modelo de IA?
+# b) La capacidad de generalización ante datos nunca vistos.
+# 10. ¿Qué sucede en el fenómeno de "Overfitting"?
+# b) El modelo memoriza los datos en lugar de aprender patrones.
+# 11. ¿Qué caracteriza al Aprendizaje Supervisado?
+# b) Aprende de datos etiquetados.
+# 12. ¿Cuál es la función del "Aprendizaje No Supervisado"?
+# a) Encontrar patrones o estructuras ocultas en datos sin etiquetas.
+# 13. ¿Qué paradigma de aprendizaje utiliza "premios y castigos" (recompensas)?
+# c) Por refuerzo.
+# 14. ¿En qué consiste el procedimiento de "Hold-out"?
+# b) En dividir los datos en conjuntos de entrenamiento y test.
+# 15. ¿Cuál es el porcentaje habitual de datos usado para entrenamiento y test en Hold-out?
+# b) 80% entrenamiento / 20% test.
+# 16. ¿Qué es la validación cruzada o "k-fold"?
+# b) Dividir los datos en k particiones para estimar el rendimiento del modelo.
+# 17. ¿Cuál es el valor habitual de "k" en la validación cruzada según la evidencia empírica?
+# b) k=5 o k=10.
+# 18. ¿Qué mide la métrica de "Precisión" (Precision) en una matriz de confusión?
+# b) La proporción de predicciones positivas que fueron realmente correctas.
+# 19. ¿Qué ocurre en una matriz de confusión cuando tenemos un "Falso Negativo"?
+# a) El modelo predice "Negativo" pero la realidad es "Positivo".
+# 20. ¿Cuál es la métrica de error más común para evaluar una Regresión Lineal?
+# b) Error Cuadrático Medio (MSE).
+# 21. A pesar de su nombre, ¿cuál es el propósito principal de la Regresión Logística?
+# b) Clasificación binaria (predecir la probabilidad de pertenecer a una clase).
+# 22. ¿Cuál es el objetivo principal de una Máquina de Soporte Vectorial (SVM)?
+# b) Encontrar el hiperplano que maximice el margen entre dos clases.
+# 23. ¿Cómo se define el "Margen" en una SVM?
+# b) Es la distancia perpendicular desde el hiperplano hasta los vectores de soporte.
+# 24. ¿Cuál es un Kernel común utilizado en SVM para relaciones no lineales complejas?
+# c) Kernel de Función de Base Radial (RBF / Gaussiano).
+# 25. ¿Qué significa que k-NN sea un algoritmo "no paramétrico"?
+# b) Que no asume una distribución predefinida para los datos.
+# 26. ¿Cuál es la métrica de distancia más común en k-NN?
+# b) Distancia Euclidiana.
+# 27. ¿Cuál es la regla de decisión en k-NN para clasificación?
+# b) Voto mayoritario entre los k vecinos más cercanos.
+# 28. ¿Qué estructura matemática define a un Árbol de Decisión?
+# b) Grafo acíclico dirigido.
+# 29. ¿Qué mide la "Entropía" en un árbol de decisión?
+# b) La pureza o mezcla de las etiquetas de clase en un nodo.
+# 30. ¿Qué significa una "Alta Entropía" en un nodo?
+# a) Que las clases están muy mezcladas (alta incertidumbre).
+# 31. ¿En qué consiste el proceso de "Feature Bagging" (o Random Subspace Method) dentro de un Random Forest?
+# b) En seleccionar un subconjunto aleatorio de características (columnas) en cada nodo antes de realizar una partición.
+# 32. ¿Qué diferencia a XGBoost de un Gradient Boosting tradicional?
+# b) XGBoost incluye regularización y procesamiento en paralelo para mayor eficiencia.
+# 33. ¿Cuál es el objetivo principal del algoritmo K-Means y qué papel juega el parámetro "K"?
+# a) Particionar n observaciones en K grupos, donde cada punto pertenece centroide más cercano..
+# 34. ¿Cuál es la principal característica del algoritmo de clustering DBSCAN?
+# b) Agrupa puntos basados en la densidad y puede identificar "ruido" (outliers).
+# 35. ¿Cómo funciona el Clustering Jerárquico Aglomerativo?
+# c) Empieza con cada punto como un grupo y los va fusionando por cercanía (bottom-up).
+# 36. ¿Cuál es el principio fundamental de Isolation Forest para detectar anomalías?
+# b) Las anomalías son pocas y diferentes, siendo fáciles de aislar.
+# 37. ¿Qué partes principales componen una red neuronal artificial?
+# c) Capas de entrada, capas ocultas y capa de salida.
+# 38. ¿Qué son los "pesos" (weights) en una red neuronal?
+# a) La importancia o fuerza de la conexión entre neuronas.
+# 39. ¿Qué característica especial tienen las Redes Recurrentes (RNN)?
+# b) Tienen "memoria" para manejar secuencias.
+# 40. ¿Qué es el "Factor de Descuento" (γ) en el aprendizaje por refuerzo?
+# b) Qué tanto nos importa la recompensa futura.
+
+
+# Preguntas abiertas
+# 1. ¿Cómo define, de acuerdo al tema visto en clase, el Aprendizaje Automático en comparación con la programación tradicional?
+# En la programación tradicional se programan reglas explícitas; en el Aprendizaje Automático se programa un algoritmo para que aprenda esas reglas a partir de los datos.
+
+# 2. Explica la diferencia entre el paradigma conexionista y el simbólico en términos de representación.
+# El simbólico es transparente y explicable basado en reglas lógicas; el conexionista es a menudo una "caja negra" difícil de descifrar.
+
+# 3. ¿Por qué se dice que el aprendizaje automático es mejor para tareas de percepción sensorial?
+# Porque estas tareas (ver, oír) son realizadas por los humanos de forma inconsciente y son difíciles de codificar en reglas manuales, pero fáciles de aprender con suficientes ejemplos.
+
+# 4. Explica el concepto de "Generalización" en IA mediante la analogía del examen.
+# Aprender no es memorizar; la generalización es la capacidad de responder preguntas nuevas. Si un alumno solo memoriza respuestas pasadas, no ha aprendido realmente.
+
+# 5. ¿Qué diferencia al aprendizaje supervisado del no supervisado?
+# El supervisado tiene etiquetas (respuestas conocidas) para guiar el aprendizaje; el no supervisado busca patrones en datos sin etiquetas previas.
+
+# 6. Describe el ciclo de interacción en el Aprendizaje por Refuerzo.
+# Un agente observa un estado, toma una acción, recibe una recompensa (positiva o negativa) y pasa a un nuevo estado, buscando maximizar la recompensa a largo plazo.
+
+# 7. ¿Por qué es importante la aleatoriedad al obtener instancias para el conjunto de test?
+# Para asegurarse de que no existen diferencias sistemáticas entre el grupo de entrenamiento y el de prueba, garantizando una evaluación justa.
+
+# 8. ¿Qué es un "fold" en la técnica de validación cruzada?
+# Es una partición separada de los datos históricos (usualmente un 10% si k=10) utilizada para evaluar el modelo entrenado con el resto de las particiones.
+
+# 9. Describe cada una de las métricas vistas en clase con sus formulas.
+# a. 1. Métricas para Clasificación (Basadas en la Matriz de Confusión)
+# • Exactitud (Accuracy): Es el porcentaje total de predicciones correctas (tanto positivos como negativos) entre todos los
+# casos. Se usa cuando las clases están equilibradas.
+# • Precisión (Precision): Mide la calidad de las predicciones positivas. Responde a: "De todos los casos que el modelo
+# marcó como positivos, ¿cuántos lo eran realmente?". Es crucial cuando el costo de un falso positivo es alto.
+# • Exhaustividad / Sensibilidad (Recall): Mide la capacidad del modelo para encontrar todos los casos positivos.
+# Responde a: "De todos los casos que realmente eran positivos, ¿cuántos logró detectar el modelo?". Es vital en
+# diagnósticos médicos.
+# • F1-Score: Es la media armónica entre la Precisión y el Recall. Proporciona un balance entre ambas, siendo muy útil
+# cuando existe un desequilibrio entre las clases.
+# b. 2. Métricas para Regresión (Basadas en el Error)
+# • Error Cuadrático Medio (MSE): Calcula el promedio de los cuadrados de los errores (diferencia entre valor real y
+# predicho). Al elevar al cuadrado, penaliza más los errores grandes.
+# • Raíz del Error Cuadrático Medio (RMSE): Es la raíz cuadrada del MSE. Su ventaja es que devuelve el error a las mismas
+# unidades que la variable original, facilitando su interpretación.
+# • Error Absoluto Medio (MAE): Promedio de las diferencias absolutas entre lo real y lo predicho. Es más robusto ante
+# valores atípicos (outliers) que el MSE.
+# • Coeficiente de Determinación (R^2): Indica qué porcentaje de la variación de los datos es explicado por el modelo. Va
+# de 0 a 1, donde 1 es un ajuste perfecto.
+
+# 10. ¿Cómo decide k-NN la etiqueta de un nuevo punto?
+# Calcula la distancia a todos los puntos, selecciona los k más cercanos, cuenta la frecuencia de sus etiquetas y asigna la del voto mayoritario.
+
+# 11. Explica de manera sencilla qué hace un Kernel Lineal vs un Kernel Polinomial.
+# El lineal busca una línea recta (o hiperplano plano) para separar los datos; el polinomial permite crear curvas más complejas para adaptarse a datos que no siguen una línea recta.
+
+# 12. ¿Cuál es la principal desventaja de las SVM cuando se trabaja con datasets extremadamente grandes?
+# Su tiempo de entrenamiento y uso de memoria aumentan drásticamente (complejidad cuadrática), lo que las hace menos eficientes que otros algoritmos ante millones de registros.
+
+# 13. ¿Cuál es la diferencia entre un nodo raíz, un nodo interno y una hoja en un árbol de decisión?
+# El raíz tiene el conjunto inicial; los internos evalúan atributos para dividir datos; las hojas emiten el resultado o decisión final.
+
+# 14. ¿Cómo funciona el aprendizaje en una red neuronal mediante el ajuste de pesos?
+# La red predice, compara con la respuesta correcta y ajusta sus pesos para corregir el error y mejorar la precisión futura.
+
+# 15. ¿Qué problema resuelven los Transformers en comparación con las redes recurrentes tradicionales?
+# Resuelven la "memoria a corto plazo" y la lentitud del procesamiento secuencial, permitiendo entender relaciones entre palabras lejanas al procesar todo el texto simultáneamente.
