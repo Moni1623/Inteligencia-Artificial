@@ -1,0 +1,144 @@
+-- EJERCICIO 2
+Bolsa de Palabras (Bag of Words)
+
+Corpus:
+1. "me gusta la inteligencia artificial"
+2. "la inteligencia artificial es fascinante"
+
+1. Construcción del vocabulario
+
+Vocabulario:
+["me", "gusta", "la", "inteligencia", "artificial", "es", "fascinante"]
+
+2. Matriz Bag of Words (BoW)
+
+| Documento | me | gusta | la | inteligencia | artificial | es | fascinante |
+|------------|----|------|----|--------------|------------|----|------------|
+| Doc 1      | 1  | 1    | 1  | 1            | 1          | 0  | 0          |
+| Doc 2      | 0  | 0    | 1  | 1            | 1          | 1  | 1          |
+
+3. Discusión
+
+El modelo Bag of Words pierde información importante como:
+- El orden de las palabras.
+- El contexto de las oraciones.
+- La relación semántica entre palabras.
+- El significado completo del texto.
+
+Solo conserva la frecuencia o presencia de las palabras en cada documento.
+
+-- EJERCICIO 9 
+Pipeline de NLP
+
+Entrada:
+"Me encanta este producto, funciona excelente"
+
+1. Limpieza
+Se elimina la puntuación y se convierte el texto a minúsculas.
+
+Resultado:
+me encanta este producto funciona excelente
+
+2. Tokenización
+Se divide el texto en palabras (tokens).
+
+Resultado:
+["me", "encanta", "este", "producto", "funciona", "excelente"]
+
+3. Vectorización
+Las palabras se convierten en números para que puedan ser procesadas por un modelo.
+
+Ejemplo:
+[1,1,1,1,1]
+
+4. Clasificación
+El modelo analiza el vector y determina el sentimiento del texto.
+
+Resultado:
+Sentimiento positivo
+
+Las palabras “encanta” y “excelente” indican una opinión favorable del producto.
+
+--PROBLEMA 3 matrix
+Convolución básica
+
+Matriz:
+[ 1 2 3
+  4 5 6
+  7 8 9 ]
+
+Kernel:
+[ 1  0
+  0 -1 ]
+
+1. Convolución en la segunda posición
+
+Tomamos la submatriz:
+[ 2 3
+  5 6 ]
+
+Aplicamos la convolución:
+
+(2×1) + (3×0) + (5×0) + (6×-1)
+
+= 2 + 0 + 0 - 6
+
+= -4
+
+Resultado:
+-4
+
+2. Pregunta
+
+Este filtro detecta cambios o diferencias de intensidad entre esquinas opuestas de la imagen.
+
+Se utiliza para resaltar bordes, contrastes o transiciones en la imagen.
+
+--PROBLEMA 7
+
+1. Técnicas de aumento de datos
+
+• Flip (voltear la imagen)
+Consiste en invertir la imagen horizontal o verticalmente.
+Ayuda a que el modelo reconozca objetos aunque cambien de orientación.
+
+• Rotation (rotación)
+La imagen se gira algunos grados.
+Permite que el modelo aprenda a identificar objetos desde diferentes ángulos.
+
+• Blur (desenfoque)
+Se aplica un efecto borroso a la imagen.
+Ayuda al modelo a reconocer patrones aun cuando la imagen no sea totalmente clara.
+
+• Cambio de exposición o brillo
+Se modifica la iluminación de la imagen.
+Hace que el modelo funcione mejor en condiciones de mucha o poca luz.
+
+• Cambio de contraste
+Aumenta o disminuye la diferencia entre zonas claras y oscuras.
+Ayuda a detectar características importantes en distintos ambientes visuales.
+
+• Escala de grises (grayscale)
+La imagen se convierte a blanco y negro.
+El modelo aprende a enfocarse más en formas y patrones que en colores.
+
+2. Diversidad forzada
+
+El Data Augmentation introduce variaciones artificiales en los datos de entrenamiento.
+Esto obliga al modelo a aprender características más generales y no memorizar imágenes específicas.
+
+3. Invarianza
+
+El modelo aprende que un objeto sigue siendo el mismo aunque:
+- esté rotado,
+- tenga diferente brillo,
+- cambie de posición,
+- o aparezca reflejado.
+
+Por ejemplo, un gato sigue siendo un gato aunque la imagen esté girada o más oscura.
+
+4. Generalización
+
+El aumento de datos mejora la capacidad de generalización porque el modelo puede funcionar correctamente con imágenes nuevas que nunca había visto.
+
+Esto reduce el overfitting, ya que el modelo deja de depender únicamente de los ejemplos originales y se vuelve más robusto frente a variaciones reales.
