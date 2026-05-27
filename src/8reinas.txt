@@ -70,49 +70,36 @@ abiertas
 
 3. Menciona las diferencias fundamentales entre el proceso de normalización de texto por "Stemming" y por "Lematización"
 (Lemmatization).
-• Posible respuesta esperada: El Stemming es un método heurístico de truncamiento burdo que corta las palabras para extraer su raíz morfológica
-cruda (por ejemplo, reduciendo "comiendo" a "com-"). En cambio, la Lematización realiza un análisis morfológico completo y estructurado para
-llevar la palabra a su forma canónica o de diccionario, conocida como lema (por ejemplo, mapeando "fueron" al verbo "ser").
+• El Stemming es un método heurístico de truncamiento burdo que corta las palabras para extraer su raíz morfológica
+cruda y la Lematización realiza un análisis morfológico completo y estructurado para
+llevar la palabra a su forma canónica o de diccionario.
 
 7. ¿Cuál es el propósito primordial de la Visión Computacional desde sus dos vertientes: el enfoque biológico y el enfoque de digital?
-• Posible respuesta esperada: Desde el punto de vista biológico, busca obtener y estudiar modelos computacionales que repliquen formalmente
-el funcionamiento del sistema visual de los seres humanos (retina, córtex visual, etc.). Desde la perspectiva digital, su objetivo es construir
+• Desde el punto de vista biológico, busca obtener y estudiar modelos computacionales que repliquen formalmente
+el funcionamiento del sistema visual de los seres humanos y desde la perspectiva digital, su objetivo es construir
 software y sistemas autónomos que emulen dichas capacidades para extraer, procesar e interpretar de manera automática la información
 contenida en los píxeles de una imagen digital.
 
 8. De acuerdo con el marco ético de la ACM actualizado en 2018, ¿cuál es la responsabilidad central de un profesional de las ciencias
 de la computación respecto al bienestar social?
-• Posible respuesta esperada: Establece que el interés, el bien común y el bienestar social deben ser siempre la prioridad central de cualquier
-desarrollo tecnológico. Los profesionales tienen la responsabilidad de diseñar sistemas que protejan la dignidad humana, eviten la
-discriminación algorítmica y aseguren que los impactos de su software sean constructivos para la sociedad.
+• Establece que el interés, el bien común y el bienestar social deben ser siempre la prioridad central de cualquier
+desarrollo tecnológico.
 
 11. Explica de qué manera el desarrollo y despliegue de grandes modelos de Inteligencia Artificial puede entrar en conflicto directo
 con el Objetivo de Desarrollo Sostenible (ODS) 13: Acción por el Clima.
-• Posible respuesta esperada: Los modelos de IA de última generación (como los Grandes Modelos de Lenguaje o Transformers avanzados)
-requieren una cantidad masiva de recursos computacionales para su entrenamiento y optimización en centros de datos. Este consumo
-eléctrico genera una huella de carbono considerable debido a la quema de combustibles fósiles para mantener los servidores y sus sistemas
-de enfriamiento, lo que impacta negativamente en las metas de reducción de emisiones del ODS 13 si no se utilizan fuentes de energía
-renovables.
+• Los modelos de IA de última generación requieren una cantidad masiva de recursos computacionales para su entrenamiento y optimización en centros de datos. Este consumo eléctrico genera una huella de carbono lo que impacta negativamente en las metas de reducción de emisiones del ODS 13 si no se utilizan fuentes de energía renovables.
 
 12. ¿Cómo puede la Inteligencia Artificial actuar como un motor positivo para el cumplimiento del ODS 3 (Salud y Bienestar) y el ODS
 4 (Educación de Calidad)?
-• Posible respuesta esperada: Para el ODS 3, la IA permite acelerar el diagnóstico médico mediante visión computacional, personalizar
-tratamientos farmacológicos y predecir brotes epidemiológicos. Para el ODS 4, facilita la creación de plataformas de aprendizaje adaptativo
-que identifican las lagunas de conocimiento de los estudiantes y personalizan los materiales educativos, democratizando el acceso a una
-formación de calidad adaptada al ritmo de cada alumno (como nuestros "pollitos").
+• Para el ODS 3, la IA permite acelerar el diagnóstico médico mediante visión computacional, personalizar
+tratamientos farmacológicos y predecir brotes epidemiológicos y para el ODS 4, facilita la creación de plataformas de aprendizaje adaptativo que identifican las lagunas de conocimiento de los estudiantes y personalizan los materiales educativos, democratizando el acceso a una formación de calidad adaptada al ritmo de cada alumno.
 
 13. Desde una perspectiva de ingeniería ética, ¿qué dilema presenta el uso de algoritmos de automatización respecto al ODS 8
 (Trabajo Decente y Crecimiento Económico)?
-• Posible respuesta esperada: El dilema radica en el desplazamiento y la sustitución de la fuerza laboral humana por sistemas automatizados
+• El dilema radica en el desplazamiento y la sustitución de la fuerza laboral humana por sistemas automatizados
 inteligentes, lo que puede provocar desempleo tecnológico y aumentar la brecha de desigualdad económica si no se gestiona correctamente.
-Una ingeniería ética debe orientarse al diseño de sistemas de "IA colaborativa" o aumento de capacidades, donde la tecnología complemente
-y dignifique el trabajo humano en lugar de precarizarlo o eliminarlo, promoviendo la capacitación continua.
+
 
 14. Explica el concepto de "fusión temprana" (Early Fusion) y "fusión tardía" (Late Fusion) en el diseño de arquitecturas de IA multimodal, y
 menciona cuál es el principal desafío técnico de la fusión temprana.
-• Posible respuesta esperada: La fusión temprana combina las diferentes modalidades de datos (como texto, audio o imágenes) al inicio del
-flujo, uniendo sus características crudas o vectores de características iniciales antes de pasarlas por el modelo de aprendizaje principal. La
-fusión tardía, en cambio, entrena modelos separados para cada modalidad y combina sus predicciones o salidas finales (por ejemplo,
-mediante votación o promedio) al final del proceso. El principal desafío técnico de la fusión temprana es lograr alinear y normalizar
-representaciones vectoriales de naturalezas y dimensiones extremadamente diferentes (como píxeles frente a tokens de texto) en un espacio
-latente común sin perder información crítica.
+• La fusión temprana combina las diferentes modalidades de datos al inicio del flujo, uniendo sus características crudas o vectores de características iniciales antes de pasarlas por el modelo de aprendizaje principal y la fusión tardía entrena modelos separados para cada modalidad y combina sus predicciones o salidas finales.
