@@ -142,3 +142,56 @@ Por ejemplo, un gato sigue siendo un gato aunque la imagen esté girada o más o
 El aumento de datos mejora la capacidad de generalización porque el modelo puede funcionar correctamente con imágenes nuevas que nunca había visto.
 
 Esto reduce el overfitting, ya que el modelo deja de depender únicamente de los ejemplos originales y se vuelve más robusto frente a variaciones reales.
+
+-- EJERCICIO 15 
+CLIP (Contrastive Language–Image Pretraining) es un modelo de :contentReference[oaicite:0]{index=0} que aprende a relacionar imágenes con descripciones en texto.
+
+Funciona usando:
+- una red neuronal para imágenes,
+- y otra para texto.
+
+Ambas convierten la información en vectores numéricos y el modelo aprende a colocar cerca los pares correctos.
+
+Ejemplo:
+- Imagen de un perro.
+- Texto: “un perro jugando”.
+
+Los vectores de ambos deben quedar cercanos.
+
+¿Por qué usa aprendizaje contrastivo?
+
+Porque compara pares correctos e incorrectos:
+- acerca la imagen y el texto relacionados,
+- aleja los que no coinciden.
+
+Ejemplo:
+- Imagen de gato + “gato” → cerca.
+- Imagen de gato + “automóvil” → lejos.
+
+Esto permite que CLIP entienda relaciones entre imágenes y lenguaje y pueda reconocer nuevas categorías sin entrenamiento específico.
+
+--EJERCICIO 18
+18. Problemas y sesgos
+
+Caso:
+Un modelo asocia “doctor” con hombres y “enfermera” con mujeres.
+
+¿De dónde viene el sesgo?
+
+El sesgo proviene principalmente de los datos de entrenamiento.
+Si el modelo fue entrenado con textos, imágenes o información donde aparecen más hombres como doctores y más mujeres como enfermeras, aprenderá esos patrones sociales y los repetirá.
+
+También puede venir de:
+- datos desbalanceados,
+- estereotipos históricos,
+- representación desigual en internet o bases de datos.
+
+¿Cómo mitigarlo?
+
+- Usar datos más diversos y balanceados.
+- Incluir ejemplos con mujeres doctoras y hombres enfermeros.
+- Revisar y limpiar datasets antes del entrenamiento.
+- Aplicar técnicas de fairness o equidad en IA.
+- Evaluar continuamente al modelo para detectar discriminación o asociaciones incorrectas.
+
+Esto ayuda a reducir estereotipos y hacer modelos más justos y representativos.
